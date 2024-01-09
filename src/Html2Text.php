@@ -9,7 +9,8 @@ class Html2Text {
 		return [
 			'ignore_errors' => false,
 			'drop_links'    => false,
-			'char_set'      => 'auto'
+			'char_set'      => 'auto',
+        	'remove_texts'  => [] // Add this line
 		];
 	}
 
@@ -255,7 +256,14 @@ class Html2Text {
 	/** @param array<string, bool | string> $options */
 	private static function iterateOverNode(\DOMNode $node, ?string $prevName, bool $in_pre, bool $is_office_document, array $options): string {
 		if ($node instanceof \DOMText) {
-		  // Replace whitespace characters with a space (equivilant to \s)
+
+			// Skip node if text is in the remove_texts array
+			$textContent = trim(self::renderText($node->wholeText));
+			if (in_array($textContent, $options['remove_texts'])) {
+				return ''; // Skip this node
+			}
+
+		  	// Replace whitespace characters with a space (equivilant to \s)
 			if ($in_pre) {
 				$text = "\n" . trim(self::renderText($node->wholeText), "\n\r\t ") . "\n";
 
