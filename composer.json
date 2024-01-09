@@ -3,7 +3,7 @@
   "description": "A PHP script to convert HTML into a plain text format",
   "type": "library",
   "keywords": [ "php", "html", "text", "email" ],
-  "homepage": "https://github.com/soundasleep/html2text",
+  "homepage": "https://github.com/numeo/html2text",
   "license": "MIT",
   "authors": [
     {
