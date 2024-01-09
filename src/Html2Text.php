@@ -10,7 +10,7 @@ class Html2Text {
 			'ignore_errors' => false,
 			'drop_links'    => false,
 			'char_set'      => 'auto',
-        	'remove_texts'  => [] // Add this line
+        	'remove_texts' => [],
 		];
 	}
 
@@ -258,8 +258,10 @@ class Html2Text {
 		if ($node instanceof \DOMText) {
 
 			// Skip node if text is in the remove_texts array
-			$textContent = trim(self::renderText($node->wholeText));
-			if (in_array($textContent, $options['remove_texts'])) {
+			$textContent = strtolower(trim(self::renderText($node->wholeText)));
+			$lowercaseRemoveTexts = array_map('strtolower', $options['remove_texts']);
+
+			if (in_array($textContent, $lowercaseRemoveTexts)) {
 				return ''; // Skip this node
 			}
 
