@@ -305,6 +305,10 @@ class Html2Text {
 			case "style":
 			case "head":
 			case "title":
+				// Added by KH
+				$output = "";
+				break;
+
 			case "meta":
 			case "script":
 				// ignore these tags
@@ -425,12 +429,47 @@ class Html2Text {
 		// end whitespace
 		switch ($name) {
 			case "h1":
+				// Added by KH
+				// uppercase output
+				$output = "\n\n".trim(strtoupper($output)).":";
+				break;
 			case "h2":
+				// Added by KH
+				// uppercase output
+				$output = "\n\n".trim(strtoupper($output)).":";
+				break;
 			case "h3":
+				// Added by KH
+				// uppercase output
+				$output = "\n\n".trim(strtoupper($output)).":";
+				break;
 			case "h4":
+				// Added by KH
+				// uppercase output
+				$output = "\n\n".trim(strtoupper($output)).":";
+				break;
 			case "h5":
+				// Added by KH
+				// uppercase output
+				$output = "\n\n".trim(strtoupper($output)).":";
+				break;
 			case "h6":
+				// Added by KH
+				// uppercase output
+				$output = "\n\n".trim(strtoupper($output)).":";
+				break;
 			case "pre":
+
+			case "dd":
+				// Added by KH
+				$output = trim($output);
+				break;
+
+			case "dt":
+				// Added by KH
+				$output = "\n".trim($output).":";
+				break;
+
 			case "p":
 				// add two lines
 				$output .= "\n\n";
@@ -519,6 +558,16 @@ class Html2Text {
 				} else {
 					$output = "";
 				}
+				break;
+
+			case "style":
+				// Added by KH
+				$output = "";
+				break;
+
+			case "form":
+				// Added by KH
+				$output = "";
 				break;
 
 			case "li":
